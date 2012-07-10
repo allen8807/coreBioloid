@@ -1,0 +1,6 @@
+2012-07-10 13:30 Zhao Bolu<zhaobl880704@gmail.com>
+corebioloidV0.1
+bioloid核心模块控制程序
+main.cpp是测试程序
+bioloid目录下是模块代码
+rsg下为动作序列的机器人模型
