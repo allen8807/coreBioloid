@@ -90,6 +90,5 @@ hj1 0	hj2 0	raj1 0	raj2 0	raj3 0	raj4 0	laj1 0	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 
 "
 
 
-
 #endif	/* FIXEDPOSESTRING_H */
 

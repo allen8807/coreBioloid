@@ -46,10 +46,10 @@ namespace BioEfect {
         };
         BioloidJointsEffector();
         ~BioloidJointsEffector();
-        void setBioJointsDeg(BioData::BioloidJointsData p_JsData);
-        void setBioJointsSpeed(BioData::BioloidJointsData p_JsData);
+        void setBioJointsDeg(BioData::BioloidJointsData& p_JsData);
+        void setBioJointsSpeed(BioData::BioloidJointsData& p_JsData);
 
-        EFFECTOR_FLAG getJointsFlag() {
+        EFFECTOR_FLAG& getJointsFlag() {
             return mJointsFlag;
         }
 

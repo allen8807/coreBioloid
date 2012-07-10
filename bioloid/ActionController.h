@@ -18,7 +18,7 @@ namespace BioCtrl {
     class ActionController {
     public:
         ActionController();
-        ActionController(const ActionController& orig);
+   
         virtual ~ActionController();
 
         typedef std::queue<BioData::BioloidJointsData> TActionQu;

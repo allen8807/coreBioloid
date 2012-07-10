@@ -16,10 +16,6 @@ namespace BioCtrl {
         //float mDuration;
         mCycle = 0;
     }
-
-    ActionController::ActionController(const ActionController& orig) {
-    }
-
     ActionController::~ActionController() {
     }
 

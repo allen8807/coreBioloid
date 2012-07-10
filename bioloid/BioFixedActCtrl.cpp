@@ -69,7 +69,7 @@ namespace BioCtrl {
         BioData::BioloidFixedActionData::TTaskMap::const_iterator iterTask = BFAD.getTaskMap().find(p_TaskName);
         mNowTaskName = p_TaskName;
         mNextTaskName = iterTask->second.next;
-        float duration = iterTask->second.time;
+      //  float duration = iterTask->second.time;
         std::string poseName = iterTask->second.pose;
         std::string nowPoseName;
         

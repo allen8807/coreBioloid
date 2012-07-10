@@ -55,8 +55,6 @@ namespace BioData {
         /** fixed angles */
         TTaskMap mTaskMap;
         TPoseMap mPoseMap;
-        std::string mTaskStr;
-        std::string mPoseStr;
     };
     std::ostream & operator<<(std::ostream &p_Stream, BioloidFixedActionData::BioFixedTask& p_Task);
     std::istream & operator>>(std::istream &p_Stream, BioloidFixedActionData::BioFixedTask& p_Task);

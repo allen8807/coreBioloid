@@ -63,7 +63,7 @@ BioloidFixedActionData::BioloidFixedActionData() {
                 }
             } while (!dataLine.empty());
 
-            cout << ss.str() << endl;
+     //       cout << ss.str() << endl;
             ss >> map[nameLine];
         }
         return true;

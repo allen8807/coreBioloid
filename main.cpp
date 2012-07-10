@@ -24,7 +24,7 @@ using namespace std;
 using namespace BioInterface;
 int main(int argc, char* argv[])
 {
-    IB.GetSingleton();
+  //  IB.GetSingleton();
     int cycle = 1;
     while(cycle>0){
  //       cout <<"1"<<endl;

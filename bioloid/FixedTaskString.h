@@ -88,6 +88,5 @@ walk_zbl_12 1.1 0 0 walk_zbl_13 0\n\
 walk_zbl_13\n\
 walk_zbl_13 1.1 0 0 walk_zbl_4 0\n\
 "
-
 #endif	/* FIXEDTASKSTRING_H */
 

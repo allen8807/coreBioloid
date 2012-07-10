@@ -91,7 +91,7 @@ namespace BioEfect {
     BioloidJointsEffector::~BioloidJointsEffector() {
     }
 
-    void BioloidJointsEffector::setBioJointsDeg( BioData::BioloidJointsData p_JsData) {
+    void BioloidJointsEffector::setBioJointsDeg( BioData::BioloidJointsData& p_JsData) {
         setBioJointDeg(BioloidJointsEffector::NECK, p_JsData.getJointData(BioloidJointsData::NECK).mDeg);
 
         setBioJointDeg(BioloidJointsEffector::RSHOULDER, p_JsData.getJointData(BioloidJointsData::RSHOULDER).mDeg);
@@ -118,7 +118,7 @@ namespace BioEfect {
 
     }
 
-    void BioloidJointsEffector::setBioJointsSpeed( BioData::BioloidJointsData p_JsData) {
+    void BioloidJointsEffector::setBioJointsSpeed( BioData::BioloidJointsData& p_JsData) {
 
         setBioJointSpeed(BioloidJointsEffector::NECK, p_JsData.getJointData(BioloidJointsData::NECK).mSpeed);
 

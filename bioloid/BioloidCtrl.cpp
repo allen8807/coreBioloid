@@ -9,7 +9,7 @@
 namespace BioCtrl {
 
     BioloidCtrl::BioloidCtrl() {
-        mTimeOfCycle = 0.02f;
+        mTimeOfCycle = 0.2f;
     }
 
     void BioloidCtrl::setTimeOfCycle(float mTimeOfCycle) {
