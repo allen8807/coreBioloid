@@ -49,7 +49,7 @@ namespace BioCtrl {
         BioCtrl::ActionController mActCtrl;
         BioEfect::BioloidJointsEffector mBioEffector;
 
-        float mTimeOfCycle;
+   //     float mTimeOfCycle;
     };
 #define BIO_ROBOT BioCtrl::BioloidCtrl::GetSingleton()
 }/*namesapce BioCtrl*/

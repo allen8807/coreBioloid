@@ -85,13 +85,14 @@ namespace BioEfect {
         mBioJoints[BioloidJointsEffector::LFOOT].setMaxSpeed(300.0f);
         mBioJoints[BioloidJointsEffector::LFOOT].setMaxDeg(150.0f);
         mBioJoints[BioloidJointsEffector::LFOOT].setMinDeg(-150.0f);
+
+        initFlag();
     }
-    
 
     BioloidJointsEffector::~BioloidJointsEffector() {
     }
 
-    void BioloidJointsEffector::setBioJointsDeg( BioData::BioloidJointsData& p_JsData) {
+    void BioloidJointsEffector::setBioJointsDeg(BioData::BioloidJointsData& p_JsData) {
         setBioJointDeg(BioloidJointsEffector::NECK, p_JsData.getJointData(BioloidJointsData::NECK).mDeg);
 
         setBioJointDeg(BioloidJointsEffector::RSHOULDER, p_JsData.getJointData(BioloidJointsData::RSHOULDER).mDeg);
@@ -116,9 +117,11 @@ namespace BioEfect {
         setBioJointDeg(BioloidJointsEffector::LANKLE, p_JsData.getJointData(BioloidJointsData::LANKLE).mDeg);
         setBioJointDeg(BioloidJointsEffector::LFOOT, p_JsData.getJointData(BioloidJointsData::LFOOT).mDeg);
 
+        mIsJointsDegOn = true;
+
     }
 
-    void BioloidJointsEffector::setBioJointsSpeed( BioData::BioloidJointsData& p_JsData) {
+    void BioloidJointsEffector::setBioJointsSpeed(BioData::BioloidJointsData& p_JsData) {
 
         setBioJointSpeed(BioloidJointsEffector::NECK, p_JsData.getJointData(BioloidJointsData::NECK).mSpeed);
 
@@ -143,6 +146,7 @@ namespace BioEfect {
         setBioJointSpeed(BioloidJointsEffector::LSHANK, p_JsData.getJointData(BioloidJointsData::LSHANK).mSpeed);
         setBioJointSpeed(BioloidJointsEffector::LANKLE, p_JsData.getJointData(BioloidJointsData::LANKLE).mSpeed);
         setBioJointSpeed(BioloidJointsEffector::LFOOT, p_JsData.getJointData(BioloidJointsData::LFOOT).mSpeed);
+        mIsJointsSpeedOn = true;
     }
 
     void BioloidJointsEffector::setBioJointDeg(HJE_ID p_Id, math::AngDeg p_Deg) {
@@ -166,5 +170,17 @@ namespace BioEfect {
         }
         mBioJoints[p_Id].setSpeed(p_Speed);
 
+    }
+
+    void BioloidJointsEffector::setJointsFlag() {
+        if (mIsJointsDegOn && mIsJointsSpeedOn) {
+            mJointsFlag = DEG_SPEED;
+            return;
+        } else if (mIsJointsDegOn) {
+            mJointsFlag = DEG;
+        } else {
+            mJointsFlag = DEG;
+            std::cerr << "[Warnning]" << "No Joints DegInfo,set flag to DEG\n" << std::endl;
+        }
     }
 }/* namespace BioEfect */

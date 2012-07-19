@@ -7,7 +7,10 @@
 
 #include "BioloidPerception.h"
 namespace BioPcept{
-BioloidPerception::BioloidPerception() {
+BioloidPerception::BioloidPerception()
+:mTimeOfCycle(0.1f)
+{
+
 }
 
 //BioloidPerception::BioloidPerception(const BioloidPerception& orig) {

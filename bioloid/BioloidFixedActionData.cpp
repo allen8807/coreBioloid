@@ -234,7 +234,7 @@ BioloidFixedActionData::BioloidFixedActionData() {
                 << p_Task.pose << ' '
                 << p_Task.time << ' '
                 << p_Task.changeable << ' '
-                << p_Task.adjustFoot << ' '
+                << p_Task.adjustLeg << ' '
                 << p_Task.next << ' '
                 << p_Task.changeFoot;
         return p_Stream;
@@ -245,7 +245,7 @@ BioloidFixedActionData::BioloidFixedActionData() {
                 >> p_Task.pose
                 >> p_Task.time
                 >> p_Task.changeable
-                >> p_Task.adjustFoot
+                >> p_Task.adjustLeg
                 >> p_Task.next
                 >> p_Task.changeFoot;
         return p_Stream;

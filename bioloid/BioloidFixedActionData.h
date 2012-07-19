@@ -19,12 +19,27 @@ namespace BioData {
     class BioloidFixedActionData : public Singleton<BioloidFixedActionData> {
     public:
 
-        /** an angle step means to desired angle and needed time */
+        /**
+         * an angle step means to desired angle and needed time
+         *
+         * pose; // desired pose
+         * time; // move in given time
+         * changeable; // can be changed by other tasks?
+         *               //true（1）表示该pose执行结束后可以使用别的task而不一定要继续这个task，
+         *               //false(0)表示该pose执行结束后必须使用该task指定的下一个pose
+         *   int adjustLeg; // 仅用于walk相关的序列can adjust foot? which?
+         *                  // 0 表示不是walk相关，不可以
+         *                  // 1 表示可调整right leg
+         *                  // 2 表示可调整left leg
+         *                  // 3 表示可调整right&left leg
+         *   std::string next; // next task name
+         *   bool changeFoot; // will the foot changed in next task?保留暂时不用
+         */
         struct BioFixedTask {
             std::string pose; // desired pose
             float time; // move in given time
-            bool changeable; // can be changed by other tasks?
-            int adjustFoot; // can adjust foot? which?
+            bool changeable; // can be changed by other tasks?true（1）表示该pose执行结束后可以使用别的task而不一定要继续这个task，
+            int adjustLeg; // can adjust foot? which?
             std::string next; // next task name
             bool changeFoot; // will the foot changed in next task?
         };

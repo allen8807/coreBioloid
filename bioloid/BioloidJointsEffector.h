@@ -41,15 +41,20 @@ namespace BioEfect {
 
         enum EFFECTOR_FLAG {
             DEG = 0,
-            SPEED = 1
+            DEG_SPEED = 1
             //    DEG_SPEED = 0x3
         };
         BioloidJointsEffector();
         ~BioloidJointsEffector();
+        void initFlag(){
+             mIsJointsSpeedOn = false;
+            mIsJointsDegOn = false;
+        }
         void setBioJointsDeg(BioData::BioloidJointsData& p_JsData);
         void setBioJointsSpeed(BioData::BioloidJointsData& p_JsData);
 
         EFFECTOR_FLAG& getJointsFlag() {
+
             return mJointsFlag;
         }
 
@@ -62,7 +67,10 @@ namespace BioEfect {
 
         void setBioJointDeg(HJE_ID p_Id, math::AngDeg p_Deg);
         void setBioJointSpeed(HJE_ID p_Id, float p_Speed);
+        void setJointsFlag();
         HingeJointEffector mBioJoints[DOF];
+        bool mIsJointsSpeedOn;
+        bool mIsJointsDegOn;
         EFFECTOR_FLAG mJointsFlag;
     };
 

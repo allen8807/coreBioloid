@@ -19,7 +19,18 @@ public:
   //  BioloidPerception(const BioloidPerception& orig);
     virtual ~BioloidPerception();
     void setRawJoints(const BioData::BioloidJointsData & p_Joints );
-    
+    void setTimeOfCycle(float p_t){
+        mTimeOfCycle = p_t;
+    }
+    void setTorsoAcc(math::Vector3f p_acc){
+        mTorsoAcc = p_acc;
+    }
+    const math::Vector3f & getTorsoAcc(){
+       return mTorsoAcc;
+    }
+   const float getTimeOfCycle() const{
+        return mTimeOfCycle;
+    }
 protected:
 
     void predictJoints();

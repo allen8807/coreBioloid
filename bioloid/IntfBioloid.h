@@ -9,6 +9,7 @@
 #define	INTFBIOLOID_H
 #include "Singleton.hpp"
 namespace BioInterface {
+
     //Interface Hinge Joints ID
 
     enum IHJ_ID {
@@ -34,35 +35,45 @@ namespace BioInterface {
         DOF = 19
     };
 
+    //Without Sensor Mode
+
     enum BLIND_MODE {
         GETUP_LIE,
         GETUP_DIVE,
         WALK_STRAIGHT
     };
 
-    struct PerceptionInfo {
-        float mJointsDegs[BioInterface::DOF];
-        float mJointsSpeeds[BioInterface::DOF];
-        float mTorsoAcc[3];
-        float mTorsoGyr[3];
-    };
+    //用于传感器信息传递的结构体
 
-    enum EFFECTOR_FLAG {
-        DEG = 0,
-        SPEED = 1,
-        //     DEG_SPEED = 2
+    struct PerceptionInfo {
+        float mJointsDegs[BioInterface::DOF]; //各关节的位置信息
+        float mJointsSpeeds[BioInterface::DOF]; //各关节的速度信息
+        float mTorsoAcc[3]; //加速度计的值
+        float mTorsoGyr[3]; //陀螺仪的值
     };
+    
+    //控制器控制的模式
+
+    enum EFFECTOR_MODE {
+        DEG = 0,               //只有目标角度控制的信息
+        DEG_SPEED = 1,        //有角度和速度的控制信息
+    };
+    //用于控制器信息传出的值
 
     struct EffectorInfo {
-        float mJointsDegs[BioInterface::DOF];
-        float mJointsSpeeds[BioInterface::DOF];
-        BioInterface::EFFECTOR_FLAG flag;
+        float mJointsDegs[BioInterface::DOF];  //目标角度的控制信息
+        float mJointsSpeeds[BioInterface::DOF];//目标速度的控制信息
+        BioInterface::EFFECTOR_MODE mMode;  // 控制模式
     };
-
+/**
+ *IntfBioloid
+ * 该类为Bioloid模块的接口类，用于读入传感器信息和输出控制命令
+ *
+ *
+ */
     class IntfBioloid : public Singleton<IntfBioloid> {
     public:
         IntfBioloid();
-        //   IntfBioloid(const IntfBioloid& orig);
         virtual ~IntfBioloid();
         void setPerceptionMode(const PerceptionInfo& p_Pcept);
         void setBlindMode(BioInterface::BLIND_MODE p_Mode);

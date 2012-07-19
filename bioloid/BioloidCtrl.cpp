@@ -9,19 +9,19 @@
 namespace BioCtrl {
 
     BioloidCtrl::BioloidCtrl() {
-        mTimeOfCycle = 0.2f;
+        //       mTimeOfCycle = 0.2f;
     }
 
-    void BioloidCtrl::setTimeOfCycle(float mTimeOfCycle) {
-        this->mTimeOfCycle = mTimeOfCycle;
+    void BioloidCtrl::setTimeOfCycle(float p_timeOfCycle) {
+        mPecpetion.setTimeOfCycle(p_timeOfCycle);
+
     }
 
     float BioloidCtrl::getTimeOfCycle() const {
-        return mTimeOfCycle;
+        return mPecpetion.getTimeOfCycle();
     }
 
-    BioEfect::BioloidJointsEffector& BioloidCtrl::getBioEffect()
-    {
+    BioEfect::BioloidJointsEffector& BioloidCtrl::getBioEffect() {
         return mBioEffector;
     }
 

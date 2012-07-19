@@ -7,20 +7,64 @@
 
 #include "IntfBioloid.h"
 #include "BioloidCtrl.h"
-
+#include "BioloidJointsData.h"
 namespace BioInterface {
-    using namespace std;
+    using namespace BioData;
+
     IntfBioloid::IntfBioloid() {
     }
-
-    //IntfBioloid::IntfBioloid(const IntfBioloid& orig) {
-    //}
 
     IntfBioloid::~IntfBioloid() {
     }
 
     void IntfBioloid::setPerceptionMode(const PerceptionInfo& p_Pcept) {
 
+        BioData::BioloidJointsData jointsInfo;
+        jointsInfo.getJointData(BioData::BioloidJointsData::NECK).mDeg = p_Pcept.mJointsDegs[BioInterface::NECK];
+        jointsInfo.getJointData(BioData::BioloidJointsData::NECK).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::NECK];
+
+        jointsInfo.getJointData(BioData::BioloidJointsData::RSHOULDER).mDeg = p_Pcept.mJointsDegs[BioInterface::RSHOULDER];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RSHOULDER).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::RSHOULDER];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RUPPERARM).mDeg = p_Pcept.mJointsDegs[BioInterface::RUPPERARM];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RUPPERARM).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::RUPPERARM];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RLOWERARM).mDeg = p_Pcept.mJointsDegs[BioInterface::RLOWERARM];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RLOWERARM).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::RLOWERARM];
+
+        jointsInfo.getJointData(BioData::BioloidJointsData::LSHOULDER).mDeg = p_Pcept.mJointsDegs[BioInterface::LSHOULDER];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LSHOULDER).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::LSHOULDER];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LUPPERARM).mDeg = p_Pcept.mJointsDegs[BioInterface::LUPPERARM];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LUPPERARM).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::LUPPERARM];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LLOWERARM).mDeg = p_Pcept.mJointsDegs[BioInterface::LLOWERARM];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LLOWERARM).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::LLOWERARM];
+
+
+        jointsInfo.getJointData(BioData::BioloidJointsData::RHIP1).mDeg = p_Pcept.mJointsDegs[BioInterface::RHIP1];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RHIP1).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::RHIP1];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RHIP2).mDeg = p_Pcept.mJointsDegs[BioInterface::RHIP2];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RHIP2).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::RHIP2];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RTHIGH).mDeg = p_Pcept.mJointsDegs[BioInterface::RTHIGH];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RTHIGH).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::RTHIGH];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RSHANK).mDeg = p_Pcept.mJointsDegs[BioInterface::RSHANK];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RSHANK).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::RSHANK];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RANKLE).mDeg = p_Pcept.mJointsDegs[BioInterface::RANKLE];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RANKLE).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::RANKLE];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RFOOT).mDeg = p_Pcept.mJointsDegs[BioInterface::RFOOT];
+        jointsInfo.getJointData(BioData::BioloidJointsData::RFOOT).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::RFOOT];
+
+        jointsInfo.getJointData(BioData::BioloidJointsData::LHIP1).mDeg = p_Pcept.mJointsDegs[BioInterface::LHIP1];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LHIP1).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::LHIP1];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LHIP2).mDeg = p_Pcept.mJointsDegs[BioInterface::LHIP2];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LHIP2).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::LHIP2];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LTHIGH).mDeg = p_Pcept.mJointsDegs[BioInterface::LTHIGH];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LTHIGH).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::LTHIGH];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LSHANK).mDeg = p_Pcept.mJointsDegs[BioInterface::LSHANK];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LSHANK).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::LSHANK];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LANKLE).mDeg = p_Pcept.mJointsDegs[BioInterface::LANKLE];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LANKLE).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::LANKLE];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LFOOT).mDeg = p_Pcept.mJointsDegs[BioInterface::LFOOT];
+        jointsInfo.getJointData(BioData::BioloidJointsData::LFOOT).mSpeed = p_Pcept.mJointsSpeeds[BioInterface::LFOOT];
+        BIO_ROBOT.getBioPcepetion().setRawJoints(jointsInfo);
+        
     }
 
     void IntfBioloid::setBlindMode(BioInterface::BLIND_MODE p_Mode) {
@@ -39,15 +83,16 @@ namespace BioInterface {
 
     void IntfBioloid::getTargetJoints(EffectorInfo& p_Efct) {
         if (BIO_ROBOT.getBioEffect().getJointsFlag() == BioEfect::BioloidJointsEffector::DEG) {
-
+            p_Efct.mMode = BioInterface::DEG;
             getTargetJointsDeg(p_Efct);
-        } else if (BIO_ROBOT.getBioEffect().getJointsFlag() == BioEfect::BioloidJointsEffector::SPEED) {
+        } else if (BIO_ROBOT.getBioEffect().getJointsFlag() == BioEfect::BioloidJointsEffector::DEG_SPEED) {
+            p_Efct.mMode = BioInterface::DEG_SPEED;
+            getTargetJointsDeg(p_Efct);
             getTargetJointsSpeed(p_Efct);
         }
     }
 
     void IntfBioloid::getTargetJointsDeg(EffectorInfo & p_Efct) {
-        p_Efct.flag = BioInterface::DEG;
         p_Efct.mJointsDegs[BioInterface::NECK] =
                 BIO_ROBOT.getBioEffect().getBioJoints()[BioEfect::BioloidJointsEffector::NECK].getDeg();
 
@@ -98,7 +143,7 @@ namespace BioInterface {
     }
 
     void IntfBioloid::getTargetJointsSpeed(EffectorInfo & p_Efct) {
-        p_Efct.flag = BioInterface::SPEED;
+
         p_Efct.mJointsSpeeds[BioInterface::NECK] =
                 BIO_ROBOT.getBioEffect().getBioJoints()[BioEfect::BioloidJointsEffector::NECK].getSpeed();
 
