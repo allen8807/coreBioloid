@@ -21,12 +21,15 @@ namespace BioCtrl {
 
     int ActionController::ctrlByDeg(const BioData::BioloidJointsData& p_Now, const BioData::BioloidJointsData& p_Target, int p_Cycle) {
         mNow = p_Now;
+      //  cout<<"[ctrlByDeg] mCycle"<<mCycle<<endl;
         if (mTargetPose == p_Target) {
+     //       cout<<"[ctrlByDeg] ==tar"<<mCycle<<endl;
             return mCycle;
         } else {
             mTargetPose = p_Target;
             mCycle = p_Cycle;
             GenerateActionDegQueue();
+    //         cout<<"[ctrlByDeg] !=tar"<<mCycle<<endl;
             return mCycle;
         }
     }

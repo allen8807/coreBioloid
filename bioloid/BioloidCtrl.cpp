@@ -47,7 +47,24 @@ namespace BioCtrl {
                 break;
         }
         return;
-
     }
+
+     void BioloidCtrl::BioNormalLoop(){
+//更新传感器的信息
+         mPecpetion.update();
+
+         BioPcept::BioloidPerception::BalanceState nowState = mPecpetion.getNowBalanceState();
+         if(nowState == BioPcept::BioloidPerception::LIED_STATE){
+       //       std::cout<<"Loop before Lie"<<std::endl;
+             this->mFixedCtrl.getUpFromLie();
+         }else if(nowState == BioPcept::BioloidPerception::DIVED_STATE){
+      //         std::cout<<"Loop before Dive"<<std::endl;
+             this->mFixedCtrl.getUpFromDive();
+         }else if(nowState == BioPcept::BioloidPerception::BALANCE_STATE){
+         //    std::cout<<"Loop before walk"<<std::endl;
+              this->mFixedCtrl.walkStraight();
+         }
+     }
+
 }
 

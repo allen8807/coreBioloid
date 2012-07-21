@@ -1,3 +1,7 @@
+2012-07-21 9:20 Zhao Bolu<zhaobl880704@gmail.com>
+V0.4
+corebioloidV0.4
+增加了根据身体状态调整使用序列的方法，这个应该是比赛的主要使用模式
 2012-07-19 14:00 Zhao Bolu<zhaobl880704@gmail.com>
 corebioloidV0.3
 修改了一些类变量，加了一些注释

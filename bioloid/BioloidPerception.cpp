@@ -8,10 +8,11 @@
 #include "BioloidPerception.h"
 namespace BioPcept{
 BioloidPerception::BioloidPerception()
-:mTimeOfCycle(0.1f)
+:mTimeOfCycle(0.02f)
 {
 
 }
+
 
 //BioloidPerception::BioloidPerception(const BioloidPerception& orig) {
 //}
@@ -32,6 +33,18 @@ void BioloidPerception::predictJoints(){
                     mRawJoints.getJointsData()[i].mDeg+mRawJoints.getJointsData()[i].mSpeed*mTimeOfCycle;
             mPredictJoints.getJointsData()[i].mSpeed =mRawJoints.getJointsData()[i].mSpeed;
         }
+}
+
+void BioloidPerception::update(){
+    predictJoints();
+    cout<<"Acc.y:"<<mTorsoPosture.y()<<endl;
+    if(mTorsoPosture.y()<-9){
+        mNowBalanceState = LIED_STATE;
+    }else if(mTorsoPosture.y()>9){
+        mNowBalanceState = DIVED_STATE;
+    }else{
+        mNowBalanceState =  BALANCE_STATE;
+    }
 }
 
 }/*namespace BioPcept*/

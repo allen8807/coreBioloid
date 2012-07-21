@@ -47,12 +47,12 @@ namespace BioData {
         BioloidJointsData();
         //  BioloidJointsData(const BioloidJointsData& orig);
         virtual ~BioloidJointsData();
-
+//可以用于修改
         JointData * getJointsData() {
             return mJointsData;
         }
-
-        JointData getJointData(HJ_ID p_hId) {
+//不能用于修改
+        const JointData getJointData(HJ_ID p_hId) {
             return mJointsData[p_hId];
         }
 

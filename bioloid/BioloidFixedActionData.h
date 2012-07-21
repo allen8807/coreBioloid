@@ -7,10 +7,11 @@
 
 #ifndef BIOLOIDFIXEDACTIONDATA_H
 #define	BIOLOIDFIXEDACTIONDATA_H
-#include<string>
-#include<map>
 #include "Singleton.hpp"
 #include "BioloidJointsData.h"
+#include<string>
+#include<map>
+
 
 namespace BioData {
     using namespace std;
@@ -24,7 +25,8 @@ namespace BioData {
          *
          * pose; // desired pose
          * time; // move in given time
-         * changeable; // can be changed by other tasks?
+         * priority; // can be changed by other tasks?
+         *              //数量越小，优先级越高，最小为0
          *               //true（1）表示该pose执行结束后可以使用别的task而不一定要继续这个task，
          *               //false(0)表示该pose执行结束后必须使用该task指定的下一个pose
          *   int adjustLeg; // 仅用于walk相关的序列can adjust foot? which?
@@ -38,7 +40,7 @@ namespace BioData {
         struct BioFixedTask {
             std::string pose; // desired pose
             float time; // move in given time
-            bool changeable; // can be changed by other tasks?true（1）表示该pose执行结束后可以使用别的task而不一定要继续这个task，
+            int priority; // can be changed by other tasks?
             int adjustLeg; // can adjust foot? which?
             std::string next; // next task name
             bool changeFoot; // will the foot changed in next task?

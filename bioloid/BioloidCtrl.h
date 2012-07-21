@@ -41,7 +41,7 @@ namespace BioCtrl {
         void BioBlindMode(BLIND_MODE p_Mode);
         void setTimeOfCycle(float mTimeOfCycle);
         float getTimeOfCycle() const;
-
+        void BioNormalLoop();
 
     private:
         BioPcept::BioloidPerception mPecpetion;
