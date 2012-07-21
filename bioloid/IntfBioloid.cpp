@@ -66,10 +66,10 @@ namespace BioInterface {
 
         BIO_ROBOT.getBioPcepetion().setRawJoints(jointsInfo);
         Vector3f temp;
-        temp.x() = p_Pcept.mTorsoAcc[0];
-        temp.y() = p_Pcept.mTorsoAcc[1];
-        temp.z() = p_Pcept.mTorsoAcc[2];
-        BIO_ROBOT.getBioPcepetion().setTorsoAcc(temp);
+        temp.x() = p_Pcept.mTorsoPosture[0];
+        temp.y() = p_Pcept.mTorsoPosture[1];
+        temp.z() = p_Pcept.mTorsoPosture[2];
+        BIO_ROBOT.getBioPcepetion().setTorsoPosture(temp);
         BIO_ROBOT.BioNormalLoop();
     }
 

@@ -62,10 +62,10 @@ namespace BioPcept {
         }
 
         void update();
-        void setPosture(math::Vector3f p_Posture) {
+        void setTorsoPosture(math::Vector3f p_Posture) {
             this->mTorsoPosture = p_Posture;
         }
-        math::Vector3f getPosture() const {
+        math::Vector3f getTorsoPosture() const {
             return mTorsoPosture;
         }
     protected:
