@@ -70,7 +70,11 @@ namespace BioInterface {
         temp.y() = p_Pcept.mTorsoPosture[1];
         temp.z() = p_Pcept.mTorsoPosture[2];
         BIO_ROBOT.getBioPcepetion().setTorsoPosture(temp);
+
         BIO_ROBOT.BioNormalLoop();
+    }
+    void IntfBioloid::setTimeOfCycle(float p_timeOfCycle){
+        BIO_ROBOT.BIO_ROBOT.getBioPcepetion(). setTimeOfCycle(p_timeOfCycle);
     }
 
     void IntfBioloid::setBlindMode(BioInterface::BLIND_MODE p_Mode) {

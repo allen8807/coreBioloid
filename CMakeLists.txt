@@ -48,6 +48,7 @@ ADD_EXECUTABLE(seubioloid main.cpp)
 
 TARGET_LINK_LIBRARIES(seubioloid
 bioloid
+pthread
 )
 SET( CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/bin/")
 INSTALL(TARGETS seubioloid

@@ -1,4 +1,11 @@
 2012-07-21 9:20 Zhao Bolu<zhaobl880704@gmail.com>
+V0.5
+corebioloidV0.5
+将主程序改成多线程，使用pthread线程库
+现在主要为三个线程，姿态传感器线程，摄像头线程和控制线程
+增加设置控制周期的接口，但建议只调用一次
+
+2012-07-21 9:20 Zhao Bolu<zhaobl880704@gmail.com>
 V0.4
 corebioloidV0.4
 增加了根据身体状态调整使用序列的方法，这个应该是比赛的主要使用模式

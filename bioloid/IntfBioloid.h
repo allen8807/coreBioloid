@@ -79,6 +79,7 @@ namespace BioInterface {
         void setPerceptionMode(const PerceptionInfo& p_Pcept);
         void setBlindMode(BioInterface::BLIND_MODE p_Mode);
         void getTargetJoints(EffectorInfo& p_Efct);
+        void setTimeOfCycle(float p_timeOfCycle);
     private:
         void getTargetJointsDeg(EffectorInfo& p_Efct);
         void getTargetJointsSpeed(EffectorInfo& p_Efct);
