@@ -88,10 +88,11 @@ namespace BioCtrl {
                 BFAD.getPoseMap().find(poseName)->second, mRemainCycle);
         mRemainCycle = BIO_ROBOT.getActCtrl().performDeg();
     }
-/**
- * 根据mRemainCycle判断Pose是否完成
- * @return
- */
+
+    /**
+     * 根据mRemainCycle判断Pose是否完成
+     * @return
+     */
     bool BioFixedActCtrl::isNowPoseCompleted() {
         if (mRemainCycle <= 0 && mNextTaskName == "null") {
             mPreTaskName = mNowTaskName;
@@ -106,11 +107,12 @@ namespace BioCtrl {
             return false;
         }
     }
-/**
- * 通过优先级判断是否可以改变task
- * @param p_NewTaskName
- * @return 可以打断返回true否则返回false
- */
+
+    /**
+     * 通过优先级判断是否可以改变task
+     * @param p_NewTaskName
+     * @return 可以打断返回true否则返回false
+     */
     bool BioFixedActCtrl::isNowTaskChangeable(std::string p_NewTaskName) {
         BioData::BioloidFixedActionData::TTaskMap::const_iterator iterNowTask = BFAD.getTaskMap().find(mNowTaskName);
         BioData::BioloidFixedActionData::TTaskMap::const_iterator iterNewTask = BFAD.getTaskMap().find(p_NewTaskName);
@@ -199,7 +201,55 @@ namespace BioCtrl {
         }
     }
 
+    /**
+     *   该函数应该对输入角限制，并且应该分成左转右转两个函数，调用的固定序列也不应该一样，因为不同的序列优先级不同
+     * 未测试
+     * @param p_turnDeg 负数向右转，正数向左转
+     */
     void BioFixedActCtrl::walk(math::AngDeg p_turnDeg) {
+        //先判断要执行的task是否可以打断当前的task，如果可以将下一个task换成要替换的task
+        if (mNowTaskName != "null" && isNowTaskChangeable("walk_zbl_1")) {
+            mNextTaskName = "walk_zbl_1";
+        }
+        //判断当前的pose是否完成，未完成则继续完成当前的pose
+        if (!isNowPoseCompleted()) {
+            mRemainCycle = BIO_ROBOT.getActCtrl().performDeg();
+            return;
+        } else {
+            //pose完成后根据当前的taskname（这个已经在判断pose完成的函数中修改）生成新的目标pose
+            BioData::BioloidFixedActionData::TTaskMap::const_iterator iterTask;
+            BioData::BioloidFixedActionData::TPoseMap::const_iterator iterPose;
+            std::string nowPoseName;
+            //如果当前的task是null
+            if (mNowTaskName == "null") {
+                iterTask = BFAD.getTaskMap().find("walk_zbl_1");
+                nowPoseName = BFAD.getTaskMap().find(iterTask->second.pose)->second.pose;
+                iterPose = BFAD.getPoseMap().find(nowPoseName);
+                mTargrtPose = iterPose->second;
 
+                if (p_turnDeg < 0 && iterTask->second.adjustLeg == 1) {
+                    mTargrtPose.getJointsData()[BioData::BioloidJointsData::RHIP1].mDeg = -p_turnDeg;
+                }
+
+                if (p_turnDeg > 0 && iterTask->second.adjustLeg == 2) {
+                    mTargrtPose.getJointsData()[BioData::BioloidJointsData::LHIP1].mDeg = p_turnDeg;
+                }
+
+                performTaskDeg("walk_zbl_1");
+            } else {
+                iterTask = BFAD.getTaskMap().find(mNowTaskName);
+                nowPoseName = BFAD.getTaskMap().find(iterTask->second.pose)->second.pose;
+                iterPose = BFAD.getPoseMap().find(nowPoseName);
+                mTargrtPose = iterPose->second;
+                if (p_turnDeg < 0 && iterTask->second.adjustLeg == 1) {
+                    mTargrtPose.getJointsData()[BioData::BioloidJointsData::RHIP1].mDeg = -p_turnDeg;
+                }
+
+                if (p_turnDeg > 0 && iterTask->second.adjustLeg == 2) {
+                    mTargrtPose.getJointsData()[BioData::BioloidJointsData::LHIP1].mDeg = p_turnDeg;
+                }
+                performTaskDeg(mNowTaskName);
+            }
+        }
     }
 }

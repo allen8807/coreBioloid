@@ -78,9 +78,9 @@ void * postureThread(void *pa) {
 }
 
 void *ctrlThread(void* pa) {
-    int cycles = 10;
+    int cycles = 100;
     IB.setTimeOfCycle(0.02f); 
-    while (cycles--) {
+    while (true) {
         struct timeval timeStart;
         gettimeofday(&timeStart, NULL);
 
@@ -115,11 +115,19 @@ void *ctrlThread(void* pa) {
             cout << efI.mJointsDegs[i] << " ";
         }
         cout << endl;
-        usleep(20000);
+        for (unsigned int ei = 0; ei < BioInterface::DOF; ei++) {
+          SetPosition(ei,efI.mJointsDegs[i]);
+        }
+
+      //  usleep(20000);
         struct timeval timeEnd;
         gettimeofday(&timeEnd, NULL);
         long timeCost = 1000000 * (timeEnd.tv_sec - timeStart.tv_sec)+(timeEnd.tv_usec - timeStart.tv_usec);
         long timeCostms = timeCost / 1000;
+        long timeComps = 20000 - timeCost;
+if(timeComps>0){
+usleep(timeComps);
+}
         printf("ctrlThread cost %ld ms %ld us\n", timeCostms, timeCost);
     }
 }
