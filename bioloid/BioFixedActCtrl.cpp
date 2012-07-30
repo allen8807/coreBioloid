@@ -55,19 +55,24 @@ namespace BioCtrl {
     }
 
     void BioFixedActCtrl::walkBlindDeg() {
+        cout<<"walk"<<endl;
         if (!isNowPoseCompleted()) {
+             cout<<"walknot"<<endl;
             mRemainCycle = BIO_ROBOT.getActCtrl().performDeg();
             return;
         } else {
             if (mNowTaskName == "null") {
+                cout<<"walk null"<<endl;
                 performTaskBlindDeg("walk_zbl_1");
             } else {
+                 cout<<"walk wrong null"<<endl;
                 performTaskBlindDeg(mNowTaskName);
             }
         }
     }
 
     void BioFixedActCtrl::performTaskBlindDeg(std::string p_TaskName) {
+        cout<<"task name"<<p_TaskName << endl;
         BioData::BioloidFixedActionData::TTaskMap::const_iterator iterTask = BFAD.getTaskMap().find(p_TaskName);
         mNowTaskName = p_TaskName;
         mNextTaskName = iterTask->second.next;
@@ -97,7 +102,7 @@ namespace BioCtrl {
         if (mRemainCycle <= 0 && mNextTaskName == "null") {
             mPreTaskName = mNowTaskName;
             mNowTaskName = "null";
-            //   mNextTaskName = "null";
+         //   mNextTaskName = "null";//blind mode use
             return true;
         } else if (mRemainCycle <= 0 && mNextTaskName != "null") {
             mPreTaskName = mNowTaskName;
@@ -127,33 +132,34 @@ namespace BioCtrl {
     }
 
     void BioFixedActCtrl::performTaskDeg(std::string p_TaskName) {
+        cout << "[perform] nowtask "<<p_TaskName<<endl;
         BioData::BioloidFixedActionData::TTaskMap::const_iterator iterTask = BFAD.getTaskMap().find(p_TaskName);
         mNowTaskName = p_TaskName;
         mNextTaskName = iterTask->second.next;
         mRemainCycle = std::ceil(iterTask->second.time / BIO_ROBOT.getTimeOfCycle());
 
         // 不考虑电机反馈
-        //       std::string poseName = iterTask->second.pose;
-        //       std::string nowPoseName;
+               std::string poseName = iterTask->second.pose;
+               std::string nowPoseName;
 
-        //        //  BioData::BioloidFixedActionData::TPoseMap::const_iterator iterPose = BFAD.getPoseMap().find(poseName);
-        //                if (mPreTaskName == "null") {
-        //                    nowPoseName = poseName;
-        //                } else {
-        //                    nowPoseName = BFAD.getTaskMap().find(mPreTaskName)->second.pose;
-        //                }
+                //  BioData::BioloidFixedActionData::TPoseMap::const_iterator iterPose = BFAD.getPoseMap().find(poseName);
+                        if (mPreTaskName == "null") {
+                            nowPoseName = poseName;
+                        } else {
+                            nowPoseName = BFAD.getTaskMap().find(mPreTaskName)->second.pose;
+                        }
 
-        //
-        //     mRemainCycle = BIO_ROBOT.getActCtrl().ctrlByDeg(BFAD.getPoseMap().find(nowPoseName)->second,
-        //                mTargrtPose, mRemainCycle);
+        
+             mRemainCycle = BIO_ROBOT.getActCtrl().ctrlByDeg(BFAD.getPoseMap().find(nowPoseName)->second,
+                        mTargrtPose, mRemainCycle);
 
         //        //仿真中没有电机速度
         //        mRemainCycle = BIO_ROBOT.getActCtrl().ctrlByDeg(BIO_ROBOT.getBioPcepetion().getRawJoints(),
         //                mTargrtPose, mRemainCycle);
 
         //仿真中有电机速度
-        mRemainCycle = BIO_ROBOT.getActCtrl().ctrlByDeg(BIO_ROBOT.getBioPcepetion().getPredictJoints(),
-                mTargrtPose, mRemainCycle);
+//        mRemainCycle = BIO_ROBOT.getActCtrl().ctrlByDeg(BIO_ROBOT.getBioPcepetion().getPredictJoints(),
+//                mTargrtPose, mRemainCycle);
         mRemainCycle = BIO_ROBOT.getActCtrl().performDeg();
         std::cout << "[perf]mRemainCycle" << mRemainCycle << endl;
     }
@@ -199,6 +205,10 @@ namespace BioCtrl {
                 performTaskDeg(mNowTaskName);
             }
         }
+    }
+
+    void BioFixedActCtrl::turnLeft(){
+         unadjustPoseAction("turn_left_1");
     }
 
     /**

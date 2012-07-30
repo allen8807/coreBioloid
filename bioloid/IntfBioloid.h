@@ -51,6 +51,8 @@ namespace BioInterface {
         float mTorsoAcc[3]; //加速度计的值
         float mTorsoGyr[3]; //陀螺仪的值
         float mTorsoPosture[3];//获得的身体姿态
+        float mCameraSlope;
+        float mCameraOffset;
     };
     
     //控制器控制的模式

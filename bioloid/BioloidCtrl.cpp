@@ -62,6 +62,9 @@ namespace BioCtrl {
              this->mFixedCtrl.getUpFromDive();
          }else if(nowState == BioPcept::BioloidPerception::BALANCE_STATE){
          //    std::cout<<"Loop before walk"<<std::endl;
+             if(mPecpetion.getCameraOffset()<-10){
+                  this->mFixedCtrl.turnLeft();
+             }
               this->mFixedCtrl.walkStraight();
          }
      }

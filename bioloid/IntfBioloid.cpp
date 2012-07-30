@@ -70,6 +70,8 @@ namespace BioInterface {
         temp.y() = p_Pcept.mTorsoPosture[1];
         temp.z() = p_Pcept.mTorsoPosture[2];
         BIO_ROBOT.getBioPcepetion().setTorsoPosture(temp);
+        BIO_ROBOT.getBioPcepetion().setCameraOffset(p_Pcept.mCameraOffset);
+        BIO_ROBOT.getBioPcepetion().setCameraSlope(p_Pcept.mCameraSlope);
 
         BIO_ROBOT.BioNormalLoop();
     }

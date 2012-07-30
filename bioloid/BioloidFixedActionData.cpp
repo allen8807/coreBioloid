@@ -31,10 +31,10 @@ BioloidFixedActionData::BioloidFixedActionData() {
      //   mTaskStr = TASK_STR;
       //  mPoseStr = POSE_STR;
 
-        loadConfigString(TASK_STR, mTaskMap);
-        loadConfigString(POSE_STR, mPoseMap);
-   //     loadConfigFile(TASK_FILE, mTaskMap);
-    //    loadConfigFile(POSE_FILE, mPoseMap);
+    //    loadConfigString(TASK_STR, mTaskMap);
+      //  loadConfigString(POSE_STR, mPoseMap);
+        loadConfigFile(TASK_FILE, mTaskMap);
+        loadConfigFile(POSE_FILE, mPoseMap);
     }
 
     bool BioloidFixedActionData::loadConfigFile(const string& filename, map<string, BioFixedTask>& map) {

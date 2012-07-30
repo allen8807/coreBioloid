@@ -28,6 +28,7 @@ namespace BioCtrl {
         void getUpFromLie();
         void getUpFromDive();
         void walkStraight();
+        void turnLeft();
         void walk(math::AngDeg p_turnDeg );
     private:
         void performTaskBlindDeg(std::string p_FisrtTaskName);
