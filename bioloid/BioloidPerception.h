@@ -25,7 +25,8 @@ namespace BioPcept {
             //LRROLLED_STATE,
             //	LEFTFALL_STATE,
             //	RIGHTFALL_STATE,
-            BALANCE_STATE = 2
+            BALANCE_STATE = 2,
+            STATE_NUM = 3
         };
         BioloidPerception();
         //  BioloidPerception(const BioloidPerception& orig);
@@ -63,30 +64,36 @@ namespace BioPcept {
         void update();
 
         void setTorsoPosture(math::Vector3f p_Posture) {
-            this->mTorsoPosture = p_Posture;
+            mTorsoPosture = p_Posture;
         }
 
         math::Vector3f getTorsoPosture() const {
             return mTorsoPosture;
         }
+
         void setCameraOffset(float p_CameraOffset) {
             mCameraOffset = p_CameraOffset;
         }
+
         float getCameraOffset() const {
             return mCameraOffset;
         }
+
         void setCameraSlope(float p_CameraSlope) {
             mCameraSlope = p_CameraSlope;
         }
+
         float getCameraSlope() const {
             return mCameraSlope;
         }
+
     protected:
+  void predictJoints();
+       void upadteState();
 
-
-
+ void upadteStateDuration(BalanceState p_state);
     private:
-        void predictJoints();
+       
         BioData::BioloidJointsData mRawJoints;
         BioData::BioloidJointsData mPredictJoints;
         math::Vector3f mTorsoAcc;
@@ -96,6 +103,7 @@ namespace BioPcept {
         float mCameraOffset;
         float mTimeOfCycle;
         BalanceState mNowBalanceState;
+        int mStateDuration[STATE_NUM];
     };
 }/*namespace BioPcept*/
 
