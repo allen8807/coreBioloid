@@ -1,7 +1,12 @@
 2012-07-31 11:00 Zhao Bolu<zhaobl880704@gmail.com>
+V0.8
+corebioloidV0.8
+修改了状态判断的函数
+
+2012-07-30 13:35 Zhao Bolu<zhaobl880704@gmail.com>
 V0.7
 corebioloidV0.7
-修改了状态判断的函数
+传感器中添加了摄像头的字段
 
 2012-07-22 9:20 Zhao Bolu<zhaobl880704@gmail.com>
 V0.6
