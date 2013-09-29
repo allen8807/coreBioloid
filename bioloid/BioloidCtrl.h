@@ -23,7 +23,10 @@ namespace BioCtrl {
         enum BLIND_MODE {
             GETUP_LIE,
             GETUP_DIVE,
-            WALK_STRAIGHT
+            WALK_STRAIGHT,
+            TURN_LEFT,
+            TURN_RIGHT,
+            SQUAT
         };
         BioloidCtrl();
         //   BioloidCtrl(const BioloidCtrl& orig);
@@ -49,7 +52,7 @@ namespace BioCtrl {
         BioCtrl::ActionController mActCtrl;
         BioEfect::BioloidJointsEffector mBioEffector;
 
-   //     float mTimeOfCycle;
+        //     float mTimeOfCycle;
     };
 #define BIO_ROBOT BioCtrl::BioloidCtrl::GetSingleton()
 }/*namesapce BioCtrl*/

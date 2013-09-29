@@ -14,22 +14,27 @@
 namespace BioCtrl {
     using namespace std;
     using namespace BioData;
-//Pose是原子操作，也就是说Pose必须被完成才能进行下一个Pose，但task不是原子操作，所以Pose后的Pose可以不是task所规定的
+    //Pose是原子操作，也就是说Pose必须被完成才能进行下一个Pose，但task不是原子操作，所以Pose后的Pose可以不是task所规定的
+
     class BioFixedActCtrl {
     public:
         BioFixedActCtrl();
         //  BioFixedActCtrl(const BioFixedActCtrl& orig);
         virtual ~BioFixedActCtrl();
-//Blind函数中的处理于其余不同，不能在非Blind的函数中调用，仅调试时使用
+        //Blind函数中的处理于其余不同，不能在非Blind的函数中调用，仅调试时使用
         void getUpFromLieBlindDeg();
         void getUpFromDiveBlindDeg();
         void walkBlindDeg();
-/////////////////////////////////////////////////////
+        void turnLeftBlindDeg();
+        void turnRightBlindDeg();
+        void squatBlindDeg();
+        /////////////////////////////////////////////////////
         void getUpFromLie();
         void getUpFromDive();
         void walkStraight();
         void turnLeft();
-        void walk(math::AngDeg p_turnDeg );
+        void turnRight();
+        void walk(math::AngDeg p_turnDeg);
     private:
         void performTaskBlindDeg(std::string p_FisrtTaskName);
         void performTaskDeg(std::string p_FisrtTaskName);
@@ -38,18 +43,18 @@ namespace BioCtrl {
          * 
          */
         void unadjustPoseAction(std::string p_FisrtTaskName);
-         /**
-          * 查看当前的Pose是否执行完毕
-          * @return
-          */
+        /**
+         * 查看当前的Pose是否执行完毕
+         * @return
+         */
         bool isNowPoseCompleted();
         bool isNowTaskChangeable(std::string p_NewTaskName);
         int mRemainCycle;
         std::string mNowTaskName;
         std::string mNextTaskName;
         std::string mPreTaskName;
-        BioData::BioloidJointsData mTargrtPose;//现在的目标Pose
-        BioData::BioloidJointsData mLastPose;//上一个完成的Pose
+        BioData::BioloidJointsData mTargrtPose; //现在的目标Pose
+        BioData::BioloidJointsData mLastPose; //上一个完成的Pose
     };
 }
 

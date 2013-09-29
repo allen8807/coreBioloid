@@ -75,7 +75,8 @@ namespace BioInterface {
 
         BIO_ROBOT.BioNormalLoop();
     }
-    void IntfBioloid::setTimeOfCycle(float p_timeOfCycle){
+
+    void IntfBioloid::setTimeOfCycle(float p_timeOfCycle) {
         BIO_ROBOT.BIO_ROBOT.getBioPcepetion(). setTimeOfCycle(p_timeOfCycle);
     }
 
@@ -90,6 +91,15 @@ namespace BioInterface {
             case WALK_STRAIGHT:
                 BIO_ROBOT.BioBlindMode(BioCtrl::BioloidCtrl::WALK_STRAIGHT);
                 break;
+            case TURN_LEFT:
+                BIO_ROBOT.BioBlindMode(BioCtrl::BioloidCtrl::TURN_LEFT);
+                break;
+            case TURN_RIGHT:
+                BIO_ROBOT.BioBlindMode(BioCtrl::BioloidCtrl::TURN_RIGHT);
+                break;
+            case SQUAT:
+                 BIO_ROBOT.BioBlindMode(BioCtrl::BioloidCtrl::SQUAT);
+                 break;
         }
     }
 

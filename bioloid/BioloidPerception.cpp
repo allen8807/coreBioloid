@@ -36,28 +36,23 @@ namespace BioPcept {
     void BioloidPerception::update() {
         //需要有关节角度和速度信息
         //predictJoints();
-
-        cout << "Posture x:" << mTorsoPosture.x() << " y:" << mTorsoPosture.y() <<
-                " z:" << mTorsoPosture.z() << endl;
-        if (mTorsoPosture.y()<-9) {
-            cout << "[BalanceState] LIED" << endl;
-            mNowBalanceState = LIED_STATE;
-        } else if (mTorsoPosture.y() > 9) {
-            cout << "[BalanceState] DIVED" << endl;
-            mNowBalanceState = DIVED_STATE;
-        } else {
-            cout << "[BalanceState] BALANCE" << endl;
-            mNowBalanceState = BALANCE_STATE;
-        }
+        upadteState();
     }
 
     void BioloidPerception::upadteState() {
         cout << "Posture x:" << mTorsoPosture.x() << " y:" << mTorsoPosture.y() <<
                 " z:" << mTorsoPosture.z() << endl;
-        if (mTorsoPosture.y()<-9) {
+
+        if (mTorsoPosture.y()<-60) {
+            cout << "[BalanceState] LEFTFALL" << endl;
+            upadteStateDuration(LEFTFALL_STATE);
+        } else if (mTorsoPosture.y() > 60) {
+            cout << "[BalanceState] RIGHTFALL" << endl;
+            upadteStateDuration(RIGHTFALL_STATE);
+        } else if (mTorsoPosture.x()<-60) {
             cout << "[BalanceState] LIED" << endl;
             upadteStateDuration(LIED_STATE);
-        } else if (mTorsoPosture.y() > 9) {
+        } else if (mTorsoPosture.x() > 60) {
             cout << "[BalanceState] DIVED" << endl;
             upadteStateDuration(DIVED_STATE);
         } else {

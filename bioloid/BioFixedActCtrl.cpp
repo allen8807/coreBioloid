@@ -55,24 +55,63 @@ namespace BioCtrl {
     }
 
     void BioFixedActCtrl::walkBlindDeg() {
-        cout<<"walk"<<endl;
+        cout << "walk" << endl;
         if (!isNowPoseCompleted()) {
-             cout<<"walknot"<<endl;
+            cout << "walknot" << endl;
             mRemainCycle = BIO_ROBOT.getActCtrl().performDeg();
             return;
         } else {
             if (mNowTaskName == "null") {
-                cout<<"walk null"<<endl;
-                performTaskBlindDeg("walk_zbl_1");
+                cout << "walk null" << endl;
+                performTaskBlindDeg("walk_zbl_4");
             } else {
-                 cout<<"walk wrong null"<<endl;
+                cout << "walk wrong null" << endl;
+                performTaskBlindDeg(mNowTaskName);
+            }
+        }
+    }
+
+    void BioFixedActCtrl::turnLeftBlindDeg() {
+        if (!isNowPoseCompleted()) {
+            mRemainCycle = BIO_ROBOT.getActCtrl().performDeg();
+            return;
+        } else {
+            if (mNowTaskName == "null") {
+                performTaskBlindDeg("turn_left_4");
+            } else {
+                performTaskBlindDeg(mNowTaskName);
+            }
+        }
+    }
+
+    void BioFixedActCtrl::turnRightBlindDeg() {
+        if (!isNowPoseCompleted()) {
+            mRemainCycle = BIO_ROBOT.getActCtrl().performDeg();
+            return;
+        } else {
+            if (mNowTaskName == "null") {
+                performTaskBlindDeg("turn_right_4");
+            } else {
+                performTaskBlindDeg(mNowTaskName);
+            }
+        }
+    }
+
+    void BioFixedActCtrl::squatBlindDeg() {
+        if (!isNowPoseCompleted()) {
+            mRemainCycle = BIO_ROBOT.getActCtrl().performDeg();
+            return;
+        } else {
+            if (mNowTaskName == "null") {
+                performTaskBlindDeg("squat");
+            } else {
                 performTaskBlindDeg(mNowTaskName);
             }
         }
     }
 
     void BioFixedActCtrl::performTaskBlindDeg(std::string p_TaskName) {
-        cout<<"task name"<<p_TaskName << endl;
+        cout << "task name" << p_TaskName << endl;
         BioData::BioloidFixedActionData::TTaskMap::const_iterator iterTask = BFAD.getTaskMap().find(p_TaskName);
         mNowTaskName = p_TaskName;
         mNextTaskName = iterTask->second.next;
@@ -102,7 +141,7 @@ namespace BioCtrl {
         if (mRemainCycle <= 0 && mNextTaskName == "null") {
             mPreTaskName = mNowTaskName;
             mNowTaskName = "null";
-         //   mNextTaskName = "null";//blind mode use
+            //   mNextTaskName = "null";//blind mode use
             return true;
         } else if (mRemainCycle <= 0 && mNextTaskName != "null") {
             mPreTaskName = mNowTaskName;
@@ -132,48 +171,48 @@ namespace BioCtrl {
     }
 
     void BioFixedActCtrl::performTaskDeg(std::string p_TaskName) {
-        cout << "[perform] nowtask "<<p_TaskName<<endl;
+        cout << "[perform] nowtask " << p_TaskName << endl;
         BioData::BioloidFixedActionData::TTaskMap::const_iterator iterTask = BFAD.getTaskMap().find(p_TaskName);
         mNowTaskName = p_TaskName;
         mNextTaskName = iterTask->second.next;
         mRemainCycle = std::ceil(iterTask->second.time / BIO_ROBOT.getTimeOfCycle());
 
         // 不考虑电机反馈
-               std::string poseName = iterTask->second.pose;
-               std::string nowPoseName;
+        std::string poseName = iterTask->second.pose;
+        std::string nowPoseName;
 
-                //  BioData::BioloidFixedActionData::TPoseMap::const_iterator iterPose = BFAD.getPoseMap().find(poseName);
-                        if (mPreTaskName == "null") {
-                            nowPoseName = poseName;
-                        } else {
-                            nowPoseName = BFAD.getTaskMap().find(mPreTaskName)->second.pose;
-                        }
+        //  BioData::BioloidFixedActionData::TPoseMap::const_iterator iterPose = BFAD.getPoseMap().find(poseName);
+        if (mPreTaskName == "null") {
+            nowPoseName = poseName;
+        } else {
+            nowPoseName = BFAD.getTaskMap().find(mPreTaskName)->second.pose;
+        }
 
-        
-             mRemainCycle = BIO_ROBOT.getActCtrl().ctrlByDeg(BFAD.getPoseMap().find(nowPoseName)->second,
-                        mTargrtPose, mRemainCycle);
+
+        mRemainCycle = BIO_ROBOT.getActCtrl().ctrlByDeg(BFAD.getPoseMap().find(nowPoseName)->second,
+                mTargrtPose, mRemainCycle);
 
         //        //仿真中没有电机速度
         //        mRemainCycle = BIO_ROBOT.getActCtrl().ctrlByDeg(BIO_ROBOT.getBioPcepetion().getRawJoints(),
         //                mTargrtPose, mRemainCycle);
 
         //仿真中有电机速度
-//        mRemainCycle = BIO_ROBOT.getActCtrl().ctrlByDeg(BIO_ROBOT.getBioPcepetion().getPredictJoints(),
-//                mTargrtPose, mRemainCycle);
+        //        mRemainCycle = BIO_ROBOT.getActCtrl().ctrlByDeg(BIO_ROBOT.getBioPcepetion().getPredictJoints(),
+        //                mTargrtPose, mRemainCycle);
         mRemainCycle = BIO_ROBOT.getActCtrl().performDeg();
         std::cout << "[perf]mRemainCycle" << mRemainCycle << endl;
     }
 
     void BioFixedActCtrl::getUpFromLie() {
-        unadjustPoseAction("qianqi_zbl_1");
-    }
-
-    void BioFixedActCtrl::getUpFromDive() {
         unadjustPoseAction("houqi_zbl_1");
     }
 
+    void BioFixedActCtrl::getUpFromDive() {
+        unadjustPoseAction("qianqi_zbl_1");
+    }
+
     void BioFixedActCtrl::walkStraight() {
-        unadjustPoseAction("walk_zbl_1");
+        unadjustPoseAction("walk_zbl_4");
     }
 
     void BioFixedActCtrl::unadjustPoseAction(std::string p_FisrtTaskName) {
@@ -207,8 +246,12 @@ namespace BioCtrl {
         }
     }
 
-    void BioFixedActCtrl::turnLeft(){
-         unadjustPoseAction("turn_left_1");
+    void BioFixedActCtrl::turnLeft() {
+        unadjustPoseAction("turn_left_4");
+    }
+
+    void BioFixedActCtrl::turnRight() {
+        unadjustPoseAction("turn_right_4");
     }
 
     /**

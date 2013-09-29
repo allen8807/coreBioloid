@@ -23,10 +23,10 @@ namespace BioPcept {
             DIVED_STATE = 1, //dived state
             //	DIVING_STATE,				//diving state
             //LRROLLED_STATE,
-            //	LEFTFALL_STATE,
-            //	RIGHTFALL_STATE,
-            BALANCE_STATE = 2,
-            STATE_NUM = 3
+            LEFTFALL_STATE = 2,
+            RIGHTFALL_STATE = 3,
+            BALANCE_STATE = 4,
+            STATE_NUM = 5
         };
         BioloidPerception();
         //  BioloidPerception(const BioloidPerception& orig);
@@ -88,12 +88,12 @@ namespace BioPcept {
         }
 
     protected:
-  void predictJoints();
-       void upadteState();
+        void predictJoints();
+        void upadteState();
 
- void upadteStateDuration(BalanceState p_state);
+        void upadteStateDuration(BalanceState p_state);
     private:
-       
+
         BioData::BioloidJointsData mRawJoints;
         BioData::BioloidJointsData mPredictJoints;
         math::Vector3f mTorsoAcc;

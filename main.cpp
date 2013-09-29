@@ -174,7 +174,7 @@ void runMultiplyThread(void) {
         pthread_join(posture_tid, NULL);
         printf("线程posture已经结束\n");
     }
-    if (posture_tid != 0) { //comment5
+    if (ctrl_tid != 0) { //comment6
         pthread_join(ctrl_tid, NULL);
         printf("线程ctrl_tid已经结束\n");
     }

@@ -63,7 +63,7 @@ namespace BioData {
         bool loadConfigFile(const std::string& filename, std::map<std::string, BioFixedTask>& map);
         bool loadConfigFile(const std::string& filename, std::map<std::string, BioData::BioloidJointsData>& map);
         void writeToPoseMap(std::istream &p_Stream, BioData::BioloidJointsData& p_BJD);
-        BioData::BioloidJointsData::HJ_ID getIDByHJName(const string& p_Name);
+        BioData::BioloidJointsData::HJ_ID getIDByHJName(const std::string& p_Name);
         //   BioloidFixedActionData(const BioloidFixedActionData& orig);
         bool loadConfigString(const std::string& p_String, std::map<std::string, BioFixedTask>& map);
         bool loadConfigString(const std::string& p_String, std::map<std::string, BioData::BioloidJointsData>& map);
